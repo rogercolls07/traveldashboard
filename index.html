@@ -23,6 +23,45 @@
                 <option value="tokyo">Tokyo</option>
             </select>
         </section>
+        <section id="dashboard-content" style="display: none;">
+            
+            <article id="summary-card" class="widget main-widget">
+                <h2>Resum de la Destinació</h2>
+                <p><strong>Ciutat:</strong> <span id="summary-city">--</span></p>
+                <p><strong>País:</strong> <span id="summary-country">--</span></p>
+                <p><strong>Temperatura:</strong> <span id="summary-temp">--</span></p>
+                <p><strong>Moneda Local:</strong> <span id="summary-currency">--</span></p>
+            </article>
+
+            <article id="weather-widget" class="widget">
+                <h3>El Temps</h3>
+                <p><strong>Temperatura actual:</strong> <span id="weather-temp">--</span></p>
+                <p><strong>Probabilitat de pluja:</strong> <span id="weather-rain-prob">--</span></p>
+                <p id="weather-rain-status" class="rain-status">--</p>
+            </article>
+
+            <article id="currency-widget" class="widget">
+                <h3>Calculadora de Moneda</h3>
+                <div class="currency-input-group">
+                    <input type="number" id="eur-input" placeholder="Quantitat en EUR" min="0">
+                    <button id="convert-btn">Converteix</button>
+                </div>
+                <div id="conversion-result-box" style="display: none;">
+                    <p>
+                        <span id="amount-input"></span> 
+                        <span id="source-currency">EUR</span> = 
+                        <strong id="converted-result"></strong> 
+                        <span id="target-currency"></span>
+                    </p>
+                </div>
+            </article>
+
+            <article id="recommendation-widget" class="widget">
+                <h3>Consell de viatge</h3>
+                <p id="travel-message">Selecciona una ciutat per veure la recomanació.</p>
+            </article>
+
+        </section>
     </main>
 </body>
 </html>
