@@ -64,3 +64,53 @@ convertBtn.addEventListener('click', async () => {
     }
     await convertCurrency(amount, currentCity.currency);
 });
+
+// Funció per actualitzar el resum de la destinació
+function updateSummaryCard(city) {
+    summaryCity.textContent = city.name;
+    summaryCountry.textContent = city.country;
+    summaryCurrency.textContent = city.currency;
+    // La temperatura s'actualitzarà quan es faci el fetch del temps
+    summaryTemp.textContent = "Carregant..."; 
+}
+
+// Funció per obtenir dades meteorològiques (Open-Meteo API)
+async function fetchWeatherData(city) {
+    try {
+        // Obtenim temperatura actual i probabilitat de precipitació
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,precipitation_probability`;
+        
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error en carregar les dades del temps.");
+        
+        const data = await response.json();
+        const currentTemp = data.current.temperature_2m;
+        const rainProb = data.current.precipitation_probability;
+
+        // Actualitzem el DOM
+        weatherTemp.textContent = `${currentTemp} °C`;
+        summaryTemp.textContent = `${currentTemp} °C`; // També al resum
+        weatherRainProb.textContent = `${rainProb}%`;
+
+        // Calculem l'estat de la pluja segons les regles de l'enunciat
+        const rainStatusText = calculateRainStatus(rainProb);
+        weatherRainStatus.textContent = rainStatusText;
+
+        // Generem el missatge de recomanació
+        generateTravelMessage(city.name, currentTemp, rainStatusText);
+
+    } catch (error) {
+        console.error(error);
+        weatherTemp.textContent = "Error";
+        weatherRainProb.textContent = "Error";
+        weatherRainStatus.textContent = "No s'ha pogut carregar el temps.";
+        summaryTemp.textContent = "--";
+    }
+}
+
+// Lògica per determinar l'estat de la pluja (0-20%, 20-50%, >50%)
+function calculateRainStatus(prob) {
+    if (prob <= 20) return "☀️ Sense pluja";
+    if (prob <= 50) return "⛅ Possible pluja";
+    return "🌧️ Probable pluja";
+}
