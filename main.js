@@ -155,3 +155,23 @@ function showConversionResult(originalAmount, convertedAmount, targetCurrency) {
     conversionResultBox.style.display = 'block';
 }
 
+// Funció per generar un missatge de recomanació dinàmic
+function generateTravelMessage(cityName, temp, rainStatus) {
+    let message = "";
+    
+    if (temp < 10) {
+        message += `Recorda portar jaqueta per anar a ${cityName}, la temperatura és baixa (${temp}°C). `;
+    } else if (temp > 25) {
+        message += `Fa calor a ${cityName} (${temp}°C), porta roba fresca! `;
+    } else {
+        message += `Avui fa una temperatura molt agradable per passejar per ${cityName} (${temp}°C). `;
+    }
+
+    if (rainStatus.includes("Probable pluja")) {
+        message += "I no t'oblidis el paraigua!";
+    } else if (rainStatus.includes("Sense pluja")) {
+        message += "Aprofita que fa un dia excel·lent sense pluja.";
+    }
+
+    travelMessage.textContent = message;
+}
