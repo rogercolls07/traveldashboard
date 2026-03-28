@@ -7,3 +7,30 @@ const citiesData = {
     "tokyo": { name: "Tokyo", country: "Japó", lat: 35.6895, lon: 139.6917, currency: "JPY" }
 };
 
+const citySelect = document.getElementById('city-select');
+const dashboardContent = document.getElementById('dashboard-content');
+
+// Elements del resum
+const summaryCity = document.getElementById('summary-city');
+const summaryCountry = document.getElementById('summary-country');
+const summaryTemp = document.getElementById('summary-temp');
+const summaryCurrency = document.getElementById('summary-currency');
+
+// Elements del temps
+const weatherTemp = document.getElementById('weather-temp');
+const weatherRainProb = document.getElementById('weather-rain-prob');
+const weatherRainStatus = document.getElementById('weather-rain-status');
+
+// Elements de moneda
+const eurInput = document.getElementById('eur-input');
+const convertBtn = document.getElementById('convert-btn');
+const conversionResultBox = document.getElementById('conversion-result-box');
+const amountInputSpan = document.getElementById('amount-input');
+const convertedResultSpan = document.getElementById('converted-result');
+const targetCurrencySpan = document.getElementById('target-currency');
+
+// Element de recomanació
+const travelMessage = document.getElementById('travel-message');
+
+// Variable global per guardar la ciutat actual seleccionada
+let currentCity = null;
