@@ -146,3 +146,12 @@ async function convertCurrency(amount, targetCurrency) {
         alert("Hi ha hagut un problema al contactar amb l'API de moneda. Torna-ho a provar més tard.");
     }
 }
+
+// Funció per mostrar el resultat de la conversió al DOM
+function showConversionResult(originalAmount, convertedAmount, targetCurrency) {
+    amountInputSpan.textContent = originalAmount;
+    convertedResultSpan.textContent = convertedAmount.toFixed(2);
+    targetCurrencySpan.textContent = targetCurrency;
+    conversionResultBox.style.display = 'block';
+}
+
