@@ -114,3 +114,35 @@ function calculateRainStatus(prob) {
     if (prob <= 50) return "⛅ Possible pluja";
     return "🌧️ Probable pluja";
 }
+
+// Funció per preparar el widget de moneda al canviar de ciutat
+function resetCurrencyWidget(city) {
+    eurInput.value = '';
+    conversionResultBox.style.display = 'none';
+    targetCurrencySpan.textContent = city.currency;
+}
+
+// Funció per fer la conversió de moneda (Frankfurter API)
+async function convertCurrency(amount, targetCurrency) {
+    // Si la moneda destinació ja és l'Euro (ex. Barcelona, Paris), no cal fer fetch
+    if (targetCurrency === "EUR") {
+        showConversionResult(amount, amount, targetCurrency);
+        return;
+    }
+
+    try {
+        const url = `https://api.frankfurter.app/latest?amount=${amount}&from=EUR&to=${targetCurrency}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) throw new Error("Error en carregar el canvi de moneda.");
+        
+        const data = await response.json();
+        const convertedAmount = data.rates[targetCurrency];
+
+        showConversionResult(amount, convertedAmount, targetCurrency);
+
+    } catch (error) {
+        console.error(error);
+        alert("Hi ha hagut un problema al contactar amb l'API de moneda. Torna-ho a provar més tard.");
+    }
+}
