@@ -34,3 +34,33 @@ const travelMessage = document.getElementById('travel-message');
 
 // Variable global per guardar la ciutat actual seleccionada
 let currentCity = null;
+
+// Esdeveniment per quan es canvia la ciutat al selector
+citySelect.addEventListener('change', async (event) => {
+    const cityKey = event.target.value;
+    currentCity = citiesData[cityKey];
+
+    if (currentCity) {
+        // Mostrem el dashboard que estava ocult per defecte
+        dashboardContent.style.display = 'flex';
+
+        // 1. Actualitzem la Card Resum Bàsica
+        updateSummaryCard(currentCity);
+
+        // 2. Obtenim les dades del temps
+        await fetchWeatherData(currentCity);
+
+        // 3. Reiniciem la calculadora de moneda
+        resetCurrencyWidget(currentCity);
+    }
+});
+
+// Esdeveniment per al botó de conversió de moneda
+convertBtn.addEventListener('click', async () => {
+    const amount = eurInput.value;
+    if (!amount || amount <= 0) {
+        alert("Si us plau, introdueix una quantitat vàlida en EUR.");
+        return;
+    }
+    await convertCurrency(amount, currentCity.currency);
+});
