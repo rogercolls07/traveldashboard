@@ -1,4 +1,4 @@
-// Cada ciutat inclou nom, país, latitud, longitud i moneda local com demana l'enunciat
+// Cada ciutat inclou nom, país, latitud, longitud i moneda local.
 const citiesData = {
     "barcelona": { name: "Barcelona", country: "Espanya", lat: 41.3874, lon: 2.1686, currency: "EUR" },
     "london": { name: "London", country: "Regne Unit", lat: 51.5085, lon: -0.1257, currency: "GBP" },
@@ -47,7 +47,7 @@ citySelect.addEventListener('change', async (event) => {
         // 1. Actualitzem la Card Resum Bàsica
         updateSummaryCard(currentCity);
 
-        // 2. Obtenim les dades del temps
+        // 2. Obtenim les dades del temps.
         await fetchWeatherData(currentCity);
 
         // 3. Reiniciem la calculadora de moneda
@@ -92,7 +92,8 @@ async function fetchWeatherData(city) {
         summaryTemp.textContent = `${currentTemp} °C`; // També al resum
         weatherRainProb.textContent = `${rainProb}%`;
 
-        // Calculem l'estat de la pluja segons les regles de l'enunciat
+        // Calculem l'estat de la pluja segons la probabilitat 0–20% → sense pluja; 20–50% → possible pluja; 50% → probable pluja
+
         const rainStatusText = calculateRainStatus(rainProb);
         weatherRainStatus.textContent = rainStatusText;
 
@@ -108,7 +109,7 @@ async function fetchWeatherData(city) {
     }
 }
 
-// Lògica per determinar l'estat de la pluja (0-20%, 20-50%, >50%)
+// Mostrem un emoji i text adequat per a cada rang de probabilitat.
 function calculateRainStatus(prob) {
     if (prob <= 20) return "☀️ Sense pluja";
     if (prob <= 50) return "⛅ Possible pluja";
