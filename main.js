@@ -176,3 +176,27 @@ function generateTravelMessage(cityName, temp, rainStatus) {
 
     travelMessage.textContent = message;
 }
+
+
+// BOTÓ SCROLL TO TOP
+
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+
+// Escoltem l'esdeveniment d'scroll a tota la finestra
+window.addEventListener('scroll', () => {
+    // Si l'usuari baixa més de 300 píxels, mostrem el botó
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        // Si torna a dalt, l'ocultem
+        scrollTopBtn.classList.remove('show');
+    }
+});
+
+// Quan fem clic al botó, pugem a dalt de tot
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' 
+    });
+});
