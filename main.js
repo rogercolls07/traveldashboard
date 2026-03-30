@@ -178,6 +178,7 @@ function generateTravelMessage(cityName, temp, rainStatus) {
 }
 
 
+
 // BOTÓ SCROLL TO TOP
 
 const scrollTopBtn = document.getElementById('scroll-top-btn');
