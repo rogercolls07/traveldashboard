@@ -201,3 +201,28 @@ scrollTopBtn.addEventListener('click', () => {
         behavior: 'smooth' 
     });
 });
+
+// A les referències al DOM (part superior del main.js)
+const googleMapIframe = document.getElementById('google-map');
+
+// Funció per actualitzar el mapa
+function updateMap(city) {
+    // Utilitzem la URL d'inserció de Google Maps amb les coordenades de l'objecte city 
+    const mapUrl = `https://maps.google.com/maps?q=${city.lat},${city.lon}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+    googleMapIframe.src = mapUrl;
+}
+
+// Dins de l'esdeveniment 'change' del citySelect:
+citySelect.addEventListener('change', async (event) => {
+    const cityKey = event.target.value;
+    currentCity = citiesData[cityKey];
+
+    if (currentCity) {
+        dashboardContent.style.display = 'flex';
+        
+        // ... (el teu codi anterior: updateSummaryCard, fetchWeatherData, etc.)
+
+        // 4. Actualitzem el mapa
+        updateMap(currentCity);
+    }
+});
