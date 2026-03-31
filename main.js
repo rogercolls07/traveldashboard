@@ -32,6 +32,9 @@ const targetCurrencySpan = document.getElementById('target-currency');
 // Element de recomanació
 const travelMessage = document.getElementById('travel-message');
 
+// Element del mapa
+const googleMapIframe = document.getElementById('google-map');
+
 // Variable global per guardar la ciutat actual seleccionada
 let currentCity = null;
 
@@ -202,8 +205,7 @@ scrollTopBtn.addEventListener('click', () => {
     });
 });
 
-// A les referències al DOM (part superior del main.js)
-const googleMapIframe = document.getElementById('google-map');
+
 
 // Funció per actualitzar el mapa
 function updateMap(city) {
