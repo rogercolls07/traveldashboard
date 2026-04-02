@@ -41,20 +41,32 @@ let currentCity = null;
 // Esdeveniment per quan es canvia la ciutat al selector
 citySelect.addEventListener('change', async (event) => {
     const cityKey = event.target.value;
+
+    // NOU: Si l'usuari torna a triar "Selecciona una ciutat..." (el value és buit)
+    if (cityKey === "") {
+        dashboardContent.style.display = 'none'; // Tornem a ocultar el dashboard
+        currentCity = null; // Reiniciem la ciutat actual
+        return; // Parem la funció aquí perquè no intenti carregar cap dada
+    }
+
+    // Lògica habitual si sí que hi ha una ciutat vàlida
     currentCity = citiesData[cityKey];
 
     if (currentCity) {
-        // Mostrem el dashboard que estava ocult per defecte
-        dashboardContent.style.display = 'flex';
+        // Mostrem el dashboard
+        dashboardContent.style.display = 'flex'; // o grid segons les teves Media Queries
 
         // 1. Actualitzem la Card Resum Bàsica
         updateSummaryCard(currentCity);
 
-        // 2. Obtenim les dades del temps.
+        // 2. Obtenim les dades del temps
         await fetchWeatherData(currentCity);
 
         // 3. Reiniciem la calculadora de moneda
         resetCurrencyWidget(currentCity);
+        
+        // 4. Actualitzem el mapa
+        updateMap(currentCity);
     }
 });
 
