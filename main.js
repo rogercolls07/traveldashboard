@@ -124,6 +124,9 @@ function resetCurrencyWidget(city) {
     eurInput.value = '';
     conversionResultBox.style.display = 'none';
     targetCurrencySpan.textContent = city.currency;
+    
+    // NOU: Canviem el text del botó dinàmicament
+    convertBtn.textContent = `Converteix a ${city.currency}`;
 }
 
 // Funció per fer la conversió de moneda (Frankfurter API)
