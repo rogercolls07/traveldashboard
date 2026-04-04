@@ -42,7 +42,7 @@ let currentCity = null;
 citySelect.addEventListener('change', async (event) => {
     const cityKey = event.target.value;
 
-    // NOU: Si l'usuari torna a triar "Selecciona una ciutat..." (el value és buit)
+    // Si l'usuari torna a triar "Selecciona una ciutat..." (el value és buit)
     if (cityKey === "") {
         dashboardContent.style.display = 'none'; // Tornem a ocultar el dashboard
         currentCity = null; // Reiniciem la ciutat actual
@@ -54,7 +54,7 @@ citySelect.addEventListener('change', async (event) => {
 
     if (currentCity) {
         // Mostrem el dashboard
-        dashboardContent.style.display = 'flex'; // o grid segons les teves Media Queries
+        dashboardContent.style.display = 'flex';
 
         // 1. Actualitzem la Card Resum Bàsica
         updateSummaryCard(currentCity);
@@ -104,7 +104,7 @@ async function fetchWeatherData(city) {
 
         // Actualitzem el DOM
         weatherTemp.textContent = `${currentTemp} °C`;
-        summaryTemp.textContent = `${currentTemp} °C`; // També al resum
+        summaryTemp.textContent = `${currentTemp} °C`;
         weatherRainProb.textContent = `${rainProb}%`;
 
         // Calculem l'estat de la pluja segons la probabilitat 0–20% → sense pluja; 20–50% → possible pluja; 50% → probable pluja
@@ -137,7 +137,7 @@ function resetCurrencyWidget(city) {
     conversionResultBox.style.display = 'none';
     targetCurrencySpan.textContent = city.currency;
     
-    // NOU: Canviem el text del botó dinàmicament
+    // Canviem el text del botó dinàmicament
     convertBtn.textContent = `Converteix a ${city.currency}`;
 }
 
@@ -237,9 +237,9 @@ citySelect.addEventListener('change', async (event) => {
     if (currentCity) {
         dashboardContent.style.display = 'flex';
         
-        // ... (el teu codi anterior: updateSummaryCard, fetchWeatherData, etc.)
+       
 
-        // 4. Actualitzem el mapa
+        // Actualitzem el mapa
         updateMap(currentCity);
     }
 });
