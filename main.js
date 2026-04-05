@@ -80,7 +80,9 @@ convertBtn.addEventListener('click', async () => {
     await convertCurrency(amount, currentCity.currency);
 });
 
-// Funció per actualitzar el resum de la destinació
+/**
+ * Funció per actualitzar el resum de la destinació
+ */
 function updateSummaryCard(city) {
     summaryCity.textContent = city.name;
     summaryCountry.textContent = city.country;
@@ -89,7 +91,9 @@ function updateSummaryCard(city) {
     summaryTemp.textContent = "Carregant..."; 
 }
 
-// Funció per obtenir dades meteorològiques (Open-Meteo API)
+/**
+ * Funció per obtenir dades meteorològiques (Open-Meteo API)
+ */
 async function fetchWeatherData(city) {
     try {
         // Obtenim temperatura actual i probabilitat de precipitació
@@ -124,14 +128,18 @@ async function fetchWeatherData(city) {
     }
 }
 
-// Mostrem un emoji i text adequat per a cada rang de probabilitat.
+/**
+ * Mostrem un emoji i text adequat per a cada rang de probabilitat.
+ */
 function calculateRainStatus(prob) {
     if (prob <= 20) return "☀️ Sense pluja";
     if (prob <= 50) return "⛅ Possible pluja";
     return "🌧️ Probable pluja";
 }
 
-// Funció per preparar el widget de moneda al canviar de ciutat
+/**
+ * Funció per preparar el widget de moneda al canviar de ciutat
+ */
 function resetCurrencyWidget(city) {
     eurInput.value = '';
     conversionResultBox.style.display = 'none';
@@ -141,7 +149,9 @@ function resetCurrencyWidget(city) {
     convertBtn.textContent = `Converteix a ${city.currency}`;
 }
 
-// Funció per fer la conversió de moneda (Frankfurter API)
+/**
+ * Funció per fer la conversió de moneda (Frankfurter API)
+ */
 async function convertCurrency(amount, targetCurrency) {
     // Si la moneda destinació ja és l'Euro (ex. Barcelona, Paris), no cal fer fetch
     if (targetCurrency === "EUR") {
@@ -166,7 +176,9 @@ async function convertCurrency(amount, targetCurrency) {
     }
 }
 
-// Funció per mostrar el resultat de la conversió al DOM
+/**
+ * Funció per mostrar el resultat de la conversió al DOM
+ */
 function showConversionResult(originalAmount, convertedAmount, targetCurrency) {
     amountInputSpan.textContent = originalAmount;
     convertedResultSpan.textContent = convertedAmount.toFixed(2);
@@ -222,7 +234,9 @@ scrollTopBtn.addEventListener('click', () => {
 
 
 
-// Funció per actualitzar el mapa
+/**
+ * Funció per actualitzar el mapa
+ */
 function updateMap(city) {
     // Utilitzem la URL d'inserció de Google Maps amb les coordenades de l'objecte city 
     const mapUrl = `https://maps.google.com/maps?q=${city.lat},${city.lon}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
